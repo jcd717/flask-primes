@@ -1,0 +1,47 @@
+{% extends "base.j2" %}
+
+{% block title %}{{ config.TITRE }}{% endblock %}
+
+
+{% block header %}
+
+<hr/>
+<div class="container">
+    <div class="item label">Hostname: </div>
+    <div class="item data">{{g.hostname}}</div>
+</div>
+<div class="container">
+    <div class="item label">Adresse IP: </div>
+    <div class="item data">{{g.IP}}</div>
+</div>
+<hr/>
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+    <div class="item label">Nombre de "mises à jour": </div>
+    <div class="item data-refresh">{{session.compteur}}{% if g.isPrime %}<span> qui est <b>premier</b></span>{% endif %}</div>
+</div>
+
+<div class="container">
+    {%- if session.primes|length != 0 -%}
+    <div class="item label">
+    <b>{{session.primes|length}}</b> nombre{{pluriel()}} <i>premier{{pluriel()}}</i> trouvé{{pluriel()}}: 
+    </div>
+    <div class="item data">
+        {%- for p in session.primes -%}
+        {{p}}{% if not loop.last %}, {% endif %}
+        {%- endfor -%}
+    {%- endif -%}
+    </div>
+</div>
+<hr/>
+<div class="aTagLikeButton">
+<a class="aTagLikeButton" href="{{url_for('primes.index')}}">Mettre à jour</a>
+</div>
+
+{% endblock %}
+

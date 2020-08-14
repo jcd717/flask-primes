@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+        <link rel="shortcut icon" href="{{ url_for('static', filename='primes-icon.png') }}">
+
+        {% block stylesheets %}{% endblock %}
+    
+        {% block javascripts %}{% endblock %}   
+    </head>
+
+<body>
+
+<section class="content">
+    <header>
+        {% block header %}{% endblock %}
+    </header>
+
+    <nav>
+        {% block content %}{% endblock %}  
+    </nav>
+
+    {% for message in get_flashed_messages() %}
+        <div class="flash">{{ message }}</div>
+    {% endfor %}
+</section>
+
+<footer>
+v1.0 by JCD from ENI Service
+</footer>
+
+</body>
+</html>

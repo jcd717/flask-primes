@@ -1,0 +1,4 @@
+
+graft primes/static
+graft primes/templates
+global-exclude *.pyc

@@ -1,0 +1,18 @@
+version: '3'
+services:
+  web:
+    image: site-primes:python3.7.8-alpine
+    environment:
+      - REDIS=redis
+    ports:
+      - "80:5000"
+    deploy:
+      replicas: 3
+    depends_on:
+      - redis
+  
+  redis:
+    image: "redis:6.0-alpine"
+    
+
+
