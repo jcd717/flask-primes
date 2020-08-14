@@ -24,7 +24,7 @@ En effet, la liste suit une progression logarithmique, ce qui correspond au fait
 Variables d'environnement
 -------------------------
 
-Elles ont deux.
+Elles sont deux:
 
 * `FLASK_APP=primes` puisqu'il s'agit d'une application *flask*. Il faut la positionner si votre serveur en a besoin (c'est le cas de *werkzeug* qui est embarqué dans *flask*)
 
