@@ -73,7 +73,8 @@ def create_app(test_config=None):
     app.config.update(
         SESSION_TYPE='redis' if redis else 'filesystem',
         #SESSION_COOKIE_SECURE=True,  # impose HTTPS
-        SESSION_USE_SIGNER=True
+        SESSION_USE_SIGNER=True,
+        PERMANENT_SESSION_LIFETIME = 2 * 24 * 3600 + 3600 # 49 heures
     )
     if redis:
         from redis import Redis
