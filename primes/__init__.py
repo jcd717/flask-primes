@@ -66,7 +66,15 @@ def create_app(test_config=None):
     
     # session côté serveur
     redis = os.environ.get('REDIS') if os.environ.get('REDIS') else False
-    app.config['SESSION_TYPE'] = 'redis' if redis else 'filesystem'
+    # app.config['SESSION_TYPE'] = 'redis' if redis else 'filesystem'
+    # app.config['SESSION_COOKIE_SECURE']=True
+    #app.config['SESSION_USE_SIGNER']=True
+    # mieux écrit:
+    app.config.update(
+        SESSION_TYPE='redis' if redis else 'filesystem',
+        #SESSION_COOKIE_SECURE=True,  # impose HTTPS
+        SESSION_USE_SIGNER=True
+    )
     if redis:
         from redis import Redis
         hp=redis.split(':')
