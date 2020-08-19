@@ -3,6 +3,7 @@
 .DS_Store
 
 flask_session/
+*.wsgi
 
 # Modèle
 venv/

@@ -74,6 +74,7 @@ def create_app(test_config=None):
         SESSION_TYPE='redis' if redis else 'filesystem',
         #SESSION_COOKIE_SECURE=True,  # impose HTTPS
         SESSION_USE_SIGNER=True,
+        SESSION_FILE_DIR=os.path.join(app.instance_path,'flask_session'),
         PERMANENT_SESSION_LIFETIME = 2 * 24 * 3600 + 3600 # 49 heures
     )
     if redis:
