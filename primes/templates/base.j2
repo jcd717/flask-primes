@@ -31,6 +31,12 @@
 
 <footer>
 v1.0 by JCD from ENI Service
+{% autoescape false %}
+<a class="glyph" href="{{ url_for('primes.infos') if g.source=='index' else url_for('homepage') }}" 
+   title="{{ 'Informations' if g.source=='index' else 'Des nombres premiers' }}">
+{{ '&#xF059'  if g.source=='index' else '&#xF015' }}
+</a>
+{% endautoescape %}
 </footer>
 
 </body>

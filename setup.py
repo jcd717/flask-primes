@@ -16,6 +16,7 @@ setup(
         'flask',
         'redis',
         'Flask-Session',
+        'Flask-Markdown',
     ],
     python_requires='>=3.6',
     author='Grand Dub',

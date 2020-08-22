@@ -1,3 +1,8 @@
+@font-face {
+    font-family: "fontawesome";
+    src: 
+        url('FontAwesome.woff') format('woff');
+}
 
 /* le lien <a> de refresh comme un boutton */
 a.aTagLikeButton {
@@ -22,7 +27,7 @@ body {
 }
 /* pour le bas de page */
 .content {
-    flex-grow:1;
+    flex-grow: 1;
 }
 
 footer {
@@ -35,6 +40,18 @@ footer {
     font-size: smaller;
     text-align: right;
 
+}
+footer > a {
+    font-family: fontawesome;
+    font-style: normal;
+    /* font-size: 1.7em; */
+    color: white;
+    background-color: gray;
+    text-decoration: none;
+    padding: 0.2em;
+}
+footer > a:hover {
+    background-color: blue;
 }
 
 div.container {
@@ -61,3 +78,5 @@ nav > div.container > div.data-refresh > span {
 hr {
     margin: 1em 1em;
 }
+
+

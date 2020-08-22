@@ -66,12 +66,10 @@ def create_app(test_config=None):
     
     # session côté serveur
     redis = os.environ.get('REDIS') if os.environ.get('REDIS') else False
-    # app.config['SESSION_TYPE'] = 'redis' if redis else 'filesystem'
-    # app.config['SESSION_COOKIE_SECURE']=True
-    #app.config['SESSION_USE_SIGNER']=True
-    # mieux écrit:
     app.config.update(
         SESSION_TYPE='redis' if redis else 'filesystem',
+        SESSION_COOKIE_HTTPONLY=True,
+        SESSION_COOKIE_SAMESITE='Lax',
         #SESSION_COOKIE_SECURE=True,  # impose HTTPS
         SESSION_USE_SIGNER=True,
         SESSION_FILE_DIR=os.path.join(app.instance_path,'flask_session'),
@@ -84,6 +82,10 @@ def create_app(test_config=None):
         p = 6379 if len(hp)==1 else int(hp[1])
         app.config['SESSION_REDIS']=Redis(host=h,port=p)
     Session(app)
+
+    # Markdown
+    from flaskext.markdown import Markdown
+    Markdown(app)
 
     # sécuriser les FORM HTML
     # from flask_wtf.csrf import CSRFProtect

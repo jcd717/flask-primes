@@ -2,6 +2,8 @@ from flask import (
     Blueprint, flash, g, redirect, render_template, request, url_for, session
 )
 
+import os
+
 #from werkzeug.exceptions import abort
 
 import socket
@@ -45,5 +47,17 @@ def index():
     def pluriel():
         return '' if len(session['primes'])<2 else 's'
     
+    g.source='index'
+
     return render_template('primes.j2',pluriel=pluriel)
 
+
+@bp.route('/informations')
+def infos():
+    g.source='infos'
+
+    filename=os.path.join(os.path.dirname(os.path.abspath(__file__)),'../README.md')
+    with open(filename) as f:
+        g.md=f.read()
+    
+    return render_template('infos.j2')

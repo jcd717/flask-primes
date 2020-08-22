@@ -19,6 +19,7 @@ flask = "*"
 Flask-Session = "*"
 redis = "*"
 site-primes = {editable = true, path = "."}
+flask-markdown = "*"
 
 [requires]
 python_version = "3.8"

@@ -1,0 +1,11 @@
+{% extends "base.j2" %}
+
+{% block title %}Informations{% endblock %}
+
+{% block content %}
+{# {% filter markdown %}
+Your Markdown
+=============
+{% endfilter %} #}
+{{ g.md|markdown }}
+{% endblock content %}
