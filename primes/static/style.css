@@ -18,33 +18,30 @@ div.aTagLikeButton {
 }
 
 body {
-    font-family: Tahoma;
+    font-family: Tahoma, Arial, Helvetica, sans-serif ;
 
     /* pour le bas de page */
     display:flex; 
     flex-direction:column;
-    min-height: 97vh;
+    height: 100vh;
+    margin: 0;
 }
 /* pour le bas de page */
 .content {
     flex-grow: 1;
+    margin: 1.5rem;
+    overflow: auto;
 }
 
 footer {
-    /*position:absolute;
-    bottom: 0;
-    width: 99%;
-    height: 1.2em;
-    margin-top:auto; */
     font-style: italic;
     font-size: smaller;
     text-align: right;
-
+    margin: 0.5em;
 }
 footer > a {
     font-family: fontawesome;
     font-style: normal;
-    /* font-size: 1.7em; */
     color: white;
     background-color: gray;
     text-decoration: none;
