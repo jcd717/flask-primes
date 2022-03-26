@@ -1,9 +1,12 @@
-.env
+#.env
 .vscode/
 .DS_Store
+._.DS_Store
 
 flask_session/
 *.wsgi
+
+pyproject.toml
 
 # Modèle
 venv/
@@ -20,3 +23,15 @@ htmlcov/
 dist/
 build/
 *.egg-info/
+
+# TS
+sitemap.xml
+
+tsconfig.tsbuildinfo
+./*.log
+
+site/js/*
+primes/static/app.js
+ts/build/*
+
+!/**/.gitkeep

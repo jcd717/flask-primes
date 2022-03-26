@@ -4,17 +4,15 @@
         url('FontAwesome.woff') format('woff');
 }
 
-/* le lien <a> de refresh comme un boutton */
-a.aTagLikeButton {
-    padding: 0.5em 0.4em;
-    -webkit-appearance: button;
-    -moz-appearance:    button;
-    appearance:         button;
-    text-decoration: none;
-}
-div.aTagLikeButton {
+div.centre {
     display: flex;
     justify-content: center;
+}
+
+button.refresh {
+    padding: 0.5em;
+    border-radius: 0.5em;
+    font-size: 1.2em;
 }
 
 body {

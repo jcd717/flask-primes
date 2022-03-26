@@ -24,8 +24,8 @@ En effet, la liste suit une progression logarithmique (de l'ordre de n/ln(n) d'a
 Variables d'environnement
 -------------------------
 
-Elles sont deux:
-
 * `FLASK_APP=primes` puisqu'il s'agit d'une application *flask*. Il faut la positionner si votre serveur en a besoin (c'est le cas de *werkzeug* qui est embarqué dans *flask*)
 
 * `REDIS`: Si cette variable a une valeur du type: `IP[:port]` alors les sessions seront stockées dans ce service, si cette variable n'existe pas, elles seront stockés dans le système de fichiers.
+
+* `NO_IP`: Si cette variable existe avec n'importe quelle valeur, affiche *127.0.0.1* à la place de la vraie adresse IP (à utiliser lorsque, comme avec *swarm*, `socket.gethostbyname()` échoue après un délai d'attente de plusieurs secondes)

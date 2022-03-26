@@ -1,1 +1,7 @@
-.gitignore
+# TODO: tout enlever sauf le nécessaire (voir Dockerfile)
+
+
+**
+!README.md
+!setup.py
+!primes/

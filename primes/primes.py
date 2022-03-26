@@ -38,11 +38,14 @@ def index():
     g.isPrime, session['primes'] = isPrime(session['compteur'],session['primes'])
 
     g.hostname = socket.gethostname()
-    try:
-        # plante dans swarm et probablement d'autres orchestrator
-        g.IP = socket.gethostbyname(g.hostname)
-    except:
-        g.IP='127.0.0.1' # c'est pas faux
+    if os.environ.get('NO_IP'):
+        g.IP='127.0.0.1'
+    else:
+        try:
+            # plante dans swarm et probablement d'autres orchestrator
+            g.IP = socket.gethostbyname(g.hostname)
+        except:
+            g.IP='127.0.0.1' # c'est pas faux
 
     def pluriel():
         return '' if len(session['primes'])<2 else 's'
