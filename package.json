@@ -1,0 +1,24 @@
+{
+    "watch": {
+      "build": {
+        "patterns": ["ts/src"],
+        "extensions": "ts",
+        "runOnChangeOnly": true,
+        "delay": 3000
+      },
+      "dev": {
+        "patterns": ["ts/src"],
+        "extensions": "ts",
+        "runOnChangeOnly": true,
+        "delay": 3000
+      }
+      
+    },
+
+    "scripts": {
+      "build": "./build.sh",
+      "watch": "npm-watch",
+      "dev": "tsc -p ./tsconfig.dev.json",
+      "clean": "rm ./ts/tsconfig.tsbuildinfo ; rm ./ts/build/* ; rm ./primes/static/app.js ; rm pip-packages.txt"
+    }
+  }

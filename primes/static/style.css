@@ -10,9 +10,10 @@ div.centre {
 }
 
 button.refresh {
-    padding: 0.5em;
+    padding: 0.5rem 1rem;
     border-radius: 0.5em;
-    font-size: 1.2em;
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
 }
 
 body {
@@ -27,7 +28,7 @@ body {
 /* pour le bas de page */
 .content {
     flex-grow: 1;
-    margin: 1.5rem;
+    margin: 0.2rem;
     overflow: auto;
 }
 
@@ -74,4 +75,6 @@ hr {
     margin: 1em 1em;
 }
 
-
+#infosPage {
+    margin: 1rem;
+}

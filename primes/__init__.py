@@ -14,7 +14,7 @@ def create_app(test_config=None):
     app.config.from_mapping(
         SECRET_KEY='dev',
         TOOLBAR=os.environ.get('TOOLBAR'),
-        TITRE='Des Nombres Premiers à chaque mise à jour !',
+        TITRE='Des Nombres Premiers qui défilent !',
         DEBUG_TB_TEMPLATE_EDITOR_ENABLED=True,
         #EXPLAIN_TEMPLATE_LOADING=True
     )

@@ -3,9 +3,11 @@
 {% block title %}Informations{% endblock %}
 
 {% block content %}
+<div id="infosPage">
 {# {% filter markdown %}
 Your Markdown
 =============
 {% endfilter %} #}
 {{ g.md|markdown }}
+</div>
 {% endblock content %}

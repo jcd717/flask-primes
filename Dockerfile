@@ -26,8 +26,8 @@ chmod +x run.sh
 CMD ["/app/run.sh"]
 
 # le moteur flask
-COPY README.md setup.py /app/
-RUN pip install .
+COPY README.md pip-packages.txt /app/
+RUN pip install -r pip-packages.txt
 
 # le code source
 COPY . /app/

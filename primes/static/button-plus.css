@@ -1,0 +1,33 @@
+.button-plus {
+  /*
+    --dim 
+    la valeur 1 est pourri!
+    bien à partir de 1.5rem
+   */
+  --dim: 4rem; 
+  --font-size: calc(var(--dim));
+  background-image: url("./button-green.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  font-size: var(--font-size);
+  width: calc(var(--dim));
+  height: calc(var(--dim));
+  color: white;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  padding: 0;
+  padding-bottom: calc(var(--font-size)/5);
+  cursor: pointer;
+}
+
+.button-plus:enabled:active  {
+  color: black;
+}
+
+.button-plus:disabled {
+  background-image: url("./button-gray.png");
+  cursor: default;
+}

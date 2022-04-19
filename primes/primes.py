@@ -1,5 +1,5 @@
 from flask import (
-    Blueprint, flash, g, redirect, render_template, request, url_for, session
+    Blueprint, g, redirect, render_template, session, url_for
 )
 
 import os
@@ -29,30 +29,53 @@ def isPrime(n,primes):
     return True,primes
 
 
-@bp.route('/')
-def index():
+def updateSession():
+    """
+    Met à jour la liste session['primes'] & session['compteur']
+    et retoune un dict contenant:
+    'isPrime': boolean pour dire si la nouvelle valeur du compteur est un nombre premier
+    'hostname': le hostname
+    'IP': l'IP du hostname
+    """
     if not session.get('compteur'): # 1ère connexion: la session n'existe pas encore
         session['compteur']=0
         session['primes']=list()
     session['compteur'] += 1
-    g.isPrime, session['primes'] = isPrime(session['compteur'],session['primes'])
-
-    g.hostname = socket.gethostname()
+    resultIsPrime, session['primes'] = isPrime(session['compteur'],session['primes'])
+    hostname = socket.gethostname()
     if os.environ.get('NO_IP'):
-        g.IP='127.0.0.1'
+        IP='127.0.0.1'
     else:
         try:
             # plante dans swarm et probablement d'autres orchestrator
-            g.IP = socket.gethostbyname(g.hostname)
+            IP = socket.gethostbyname(hostname)
         except:
-            g.IP='127.0.0.1' # c'est pas faux
+            IP='127.0.0.1' # c'est pas faux
+    return {
+        'isPrime': resultIsPrime,
+        'hostname': hostname,
+        'IP': IP
+    }
 
+@bp.route('/')
+def index():
     def pluriel():
         return '' if len(session['primes'])<2 else 's'
     
     g.source='index'
+    next=updateSession()
+    g.isPrime=next['isPrime']
+    g.hostname=next['hostname']
+    g.IP=next['IP']
 
     return render_template('primes.j2',pluriel=pluriel)
+
+
+@bp.route('/reset')
+def resetCounter():
+    session['compteur']=0
+    session['primes']=list()
+    return redirect(url_for('primes.index'))
 
 
 @bp.route('/informations')
@@ -64,3 +87,17 @@ def infos():
         g.md=f.read()
     
     return render_template('infos.j2')
+
+
+@bp.route('/api/allAndNext')
+def allAndNext():
+    next=updateSession()
+    next.update({'listPrimes':session['primes'],'counter':session['compteur']})
+    return next
+
+
+@bp.route('/api/next')
+def next():
+    next=updateSession()
+    next.update({'counter':session['compteur']})
+    return next

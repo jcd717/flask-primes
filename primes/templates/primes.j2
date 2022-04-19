@@ -1,46 +1,76 @@
 {% extends "base.j2" %}
 
 {% block title %}{{ config.TITRE }}{% endblock %}
-
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='button-plus.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='checkbox-switch.css') }}">
+{% endblock %}
+{% block javascripts %}
+    <script type="module">
+        import * as App from '{{ url_for('static', filename='app.js') }}';
+    </script>
+{% endblock %}
 
 {% block header %}
-
-<hr/>
-<div class="container">
-    <div class="item label">Hostname: </div>
-    <div class="item data">{{g.hostname}}</div>
-</div>
-<div class="container">
-    <div class="item label">Adresse IP: </div>
-    <div class="item data">{{g.IP}}</div>
-</div>
-<hr/>
-
+    <hr/>
+    <div class="container">
+        <div class="item label">Hostname: </div>
+        <div class="item data" id="hostname">{{g.hostname}}</div>
+    </div>
+    <div class="container">
+        <div class="item label">Adresse IP: </div>
+        <div class="item data" id="IP">{{g.IP}}</div>
+    </div>
+    <hr/>
 {% endblock %}
 
 
 {% block content %}
-
+<input type="hidden" id="apiNext" value="{{ url_for('primes.next')}}">
+{# <input type="hidden" id="apiAllAndNext" value="{{ url_for('primes.allAndNext')}}"> #}
 <div class="container">
-    <div class="item label">Nombre de "mises à jour": </div>
-    <div class="item data-refresh">{{session.compteur}}{% if g.isPrime %}<span> qui est <b>premier</b></span>{% endif %}</div>
+    <div class="item label">Valeur du compteur: </div>
+    <div class="item data-refresh">
+      <span id="valeurCompteur">{{session.compteur}}</span>
+      <span id="isPrime" {{ '' if g.isPrime else 'hidden' }}> qui est <b>premier</b></span>
+    </div>
 </div>
 
-<div class="container">
-    {%- if session.primes|length != 0 -%}
+{%-set displayNone='style="display: none;"'|safe%}
+{%-set stringNombre="nombre"%}
+{%-set stringPremier="premier"%}
+{%-set stringTrouvé = "trouvé"%}
+<input type="hidden" id="stringNombre" value="{{ stringNombre }}">
+<input type="hidden" id="stringPremier" value="{{ stringPremier }}">
+<input type="hidden" id="stringTrouvé" value="{{ stringTrouvé }}">
+<div class="container" id="containerPrimes" {{ '' if session.primes|length != 0 else displayNone }}>
+    {# {%- if session.primes|length != 0 -%} #}
     <div class="item label">
-    <b>{{session.primes|length}}</b> nombre{{pluriel()}} <i>premier{{pluriel()}}</i> trouvé{{pluriel()}}: 
+    <b id="primesLength">{{session.primes|length}}</b> 
+    <span id="stringElementNombre">{{stringNombre}}{{pluriel()}}</span>
+    <i id="stringElementPremier">{{stringPremier}}{{pluriel()}}</i> 
+    <span id="stringElementTrouvé">{{stringTrouvé}}{{pluriel()}}</span>:
     </div>
-    <div class="item data">
+    <div class="item data" id="listPrimes">
         {%- for p in session.primes -%}
         {{p}}{% if not loop.last %}, {% endif %}
         {%- endfor -%}
-    {%- endif -%}
+    {# {%- endif -%} #}
     </div>
 </div>
 <hr/>
 <div class="centre">
-    <a href="{{url_for('primes.index')}}"><button class="refresh">Mettre à jour</button></a>
+    <button id="button-plus" class="button-plus" title="Incrémenter le compteur">+</button>
+</div>
+<div class="centre">
+    <label class="rocker" title="Faire défiler !">
+        <input id="OFF" type="checkbox" checked>
+        <span class="switch-left">Off</span>
+        <span class="switch-right">On</span>
+    </label>
+</div>
+<div class="centre">
+    <a href="{{url_for('primes.resetCounter')}}"><button class="refresh" title="Mettre le compteur au début">RESET</button></a>
 </div>
 
 {% endblock %}

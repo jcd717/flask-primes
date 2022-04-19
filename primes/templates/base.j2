@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
-        <title>{% block title %}{% endblock %}</title>
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-        <link rel="shortcut icon" href="{{ url_for('static', filename='primes-icon.png') }}">
-
-        {% block stylesheets %}{% endblock %}
+<head>
+    <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-        {% block javascripts %}{% endblock %}   
-    </head>
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='primes-icon.png') }}">
+
+    {% block stylesheets %}{% endblock %}
+    {% block javascripts %}{% endblock %}   
+</head>
 
 <body>
 
@@ -30,7 +29,7 @@
 </section>
 
 <footer>
-v1.1 by JCD from ENI Service
+v2.0 by JCD from ENI Service
 {% autoescape false %}
 <a class="glyph" href="{{ url_for('primes.infos') if g.source=='index' else url_for('homepage') }}" 
    title="{{ 'Informations' if g.source=='index' else 'Des nombres premiers' }}">

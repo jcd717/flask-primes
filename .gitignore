@@ -21,18 +21,19 @@ instance/
 htmlcov/
 
 dist/
-build/
+/build/
 *.egg-info/
+
+pip-packages.txt
 
 # TS
 sitemap.xml
 
-!/**/.gitkeep
-
 tsconfig.tsbuildinfo
 ./*.log
 
-site/js/*
+
 primes/static/app.js
 ts/build/*
+!/**/.gitkeep
 
