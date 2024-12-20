@@ -20,6 +20,7 @@ Flask-Session = "*"
 redis = "*"
 site-primes = {editable = true, path = "."}
 flask-markdown = "*"
+gunicorn = "*"
 
 [requires]
-python_version = "3.8"
+python_version = "3.7"
